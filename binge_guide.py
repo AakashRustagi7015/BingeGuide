@@ -25,7 +25,7 @@ def recommend_movie():
         for i in range(0,len(find_close_match)):
             print(i+1,'.',find_close_match[i])
         n=int(input('Enter the number which u want to search:'))
-        if(n  not in(1,len(find_close_match))):
+        if(n not in range(1,len(find_close_match)+1)):
             print('Invalid Input')
             return
         else:
@@ -47,7 +47,7 @@ def recommend_movie():
 def recommend_series():
     path="https://raw.githubusercontent.com/AakashRustagi7015/BingeGuide/main/Netflix_Series_data.csv"
     data=pd.read_csv(path)
-    # data.head(2)
+
     data.isna().sum()
     data.dropna(axis=0,inplace=True)
     def prepare_data(x):
@@ -66,7 +66,6 @@ def recommend_series():
     data.reset_index(inplace = True)
     indices = pd.Series(data.index, index=data['Title'])
     list_of_all_titles = data['Title'].tolist()
-
     name=input('Enter series name:')
     find_close_match = difflib.get_close_matches(name, list_of_all_titles,n=5,cutoff=0.6)
     if(len(find_close_match)==0):
@@ -77,10 +76,11 @@ def recommend_series():
         for i in range(0,len(find_close_match)):
             print(i+1,'.',find_close_match[i])
         n=int(input('Enter the number which u want to search:'))
-        if(n  not in(1,len(find_close_match))):
+        if(n  not in range(1,len(find_close_match)+1)):
             print('Invalid Input')
             return
         else:
+            name=find_close_match[n-1]
             indx=indices[name]
             sim_score=list(enumerate(cosine_sim2[indx]))
             sorted_sim_score = sorted(sim_score, key=lambda x: x[1], reverse=True)
