@@ -8,6 +8,12 @@ Tech Stack used: Python, Scikit-learn, Cosine-similarity, Pandas, TfIdf Vectoris
 3. Selected these features(['Genre','Tags','cast','Rating']) of each row and vectorise those using TfIdf vectorizer.
 4. Calculated the cosine similarity between each vector and return top 5 similar records found.
 
+# Requirements Installation
+Run
+```bash
+    pip install pandas scikit-learn
+```
+
 # How To Run
 1. Clone the repository.
 2. Run binge_guide.py
